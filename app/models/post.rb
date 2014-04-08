@@ -18,4 +18,8 @@ class Post < ActiveRecord::Base
     count
   end
 
+  def self.ranking
+    rank = Post.all.sort_by {|obj| obj.total_votes.to_f - (Time.now - obj.created_at) / 10000 }.reverse
+  end
+
 end
