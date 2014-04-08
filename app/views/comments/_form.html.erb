@@ -1,0 +1,9 @@
+<%= form_for [@post, @comment], :html => { :multipart => true } do |form| %>
+  <%= form.hidden_field :post_id, :value => @post.id %>
+   <div class='form-group' id='form-input'>
+    <%= form.label :content, "Comment" %></br>
+    <%= form.text_area :content, :class => "post-comment" %>
+  </div>
+    <%= form.submit(:class => "btn btn-xs btn-primary") %>
+
+<% end %>

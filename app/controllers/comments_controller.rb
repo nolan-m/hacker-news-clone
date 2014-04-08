@@ -1,10 +1,8 @@
 class CommentsController < ApplicationController
 
   def index
-    @comments = Comment.all
-  end
-
-  def new
+    @post = Post.find(params[:post_id])
+    @comments = @post.comments
     @comment = Comment.new
   end
 
@@ -12,7 +10,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(user_params)
     if @comment.save
       flash[:notice] = "Comment created."
-      redirect_to comments_path
+      redirect_to post_path(@comment.post)
     else
       render 'new'
     end

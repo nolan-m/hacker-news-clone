@@ -2,8 +2,7 @@
 
 FactoryGirl.define do
   factory :comment do
-    title 'Test Title'
-    link 'http://google.com'
-    content 'Test Test test'
+    content 'Comment Content Test'
+    association :post, :factory => :post
   end
 end

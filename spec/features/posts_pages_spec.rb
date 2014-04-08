@@ -31,10 +31,22 @@ describe Post do
     page.should have_content 'Please fix these errors:'
   end
 
-  it 'display comments and post content when clicking on comments' do
+  it 'displays comments and post content when clicking on comments' do
     post = FactoryGirl.create :post
     visit posts_path
     click_link "Comments (#{post.comments.length})"
     page.should have_content post.title
   end
 end
+describe Comment do
+    it 'lets a user add a comment to a post' do
+      post = FactoryGirl.create :post
+      visit posts_path
+      click_link "Comments (#{post.comments.length})"
+      click_link 'New Comment'
+      fill_in 'Comment Content', :with => "Dude seriously"
+      click_button 'Create Comment'
+      page.should have_content 'Dude seriously'
+
+    end
+  end
