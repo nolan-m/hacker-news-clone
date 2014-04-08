@@ -11,6 +11,7 @@
     <%= form.label :content, "Post Content" %></br>
     <%= form.text_area :content %>
   </div>
+    <%= form.hidden_field :total_votes, :value => 0 %>
     <%= form.submit(:class => "btn btn-primary") %>
 
 <% end %>

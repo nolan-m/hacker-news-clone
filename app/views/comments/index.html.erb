@@ -5,6 +5,7 @@
 <p> <%= @post.content %> </p>
 <%= render('layouts/errors', object: @comment) %>
   <%= render('form') %>
+  <%= flash[:notice] %>
   <hr>
   <h4> Comments: </h4>
   <ul>

@@ -12,7 +12,7 @@ describe Post do
   end
   it 'can be edited by a user' do
     post = FactoryGirl.create :post
-    visit post_path(post)
+    visit post_comments_path(post)
     click_link 'Edit Post'
     fill_in 'Title', :with => 'New title'
     click_button 'Update Post'
@@ -20,7 +20,7 @@ describe Post do
   end
   it 'can be deleted by a user' do
     post = FactoryGirl.create :post
-    visit post_path(post)
+    visit post_comments_path(post)
     click_link 'Delete'
     page.should_not have_content post.title
   end
@@ -38,15 +38,4 @@ describe Post do
     page.should have_content post.title
   end
 end
-describe Comment do
-    it 'lets a user add a comment to a post' do
-      post = FactoryGirl.create :post
-      visit posts_path
-      click_link "Comments (#{post.comments.length})"
-      click_link 'New Comment'
-      fill_in 'Comment Content', :with => "Dude seriously"
-      click_button 'Create Comment'
-      page.should have_content 'Dude seriously'
 
-    end
-  end

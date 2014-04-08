@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update(user_params)
       flash[:notice] = "Post updated"
-      redirect_to post_path(@post)
+      redirect_to post_comments_path(@post)
     else
       render 'edit'
     end
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
 
 private
   def user_params
-    params.require(:post).permit(:title, :link, :content)
+    params.require(:post).permit(:title, :link, :content, :total_votes)
   end
 
 end

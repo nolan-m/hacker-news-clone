@@ -3,14 +3,14 @@
 <h1>Posts</h1>
 
 <ul id='no-bullets'>
-  <% @posts.each do |post| %>
+  <% @posts.sort_by{|obj| obj.total_votes}.reverse.each do |post| %>
     <li>
       <%= link_to "", votes_path(:vote => {:post_id => post.id, :score => 1}), :class=>"glyphicon glyphicon-arrow-up blue", method: :post %>
-      <%= link_to "", votes_path(:vote => {:post_id => post.id, :score => 0}), :class=>"glyphicon glyphicon-arrow-down red", method: :post %>  <%= link_to post.title, post.link, :class => "lead" %></li>
+      <%= link_to "", votes_path(:vote => {:post_id => post.id, :score => 0}), :class=>"glyphicon glyphicon-arrow-down red", method: :post %> <%= "(#{post.total_votes})" %> <%= link_to post.title, post.link, :class => "lead" %></li>
         <ul id='no-bullets'><li><small><%= link_to "Comments (#{post.comments.length})", post_comments_path(post) %></small></li></ul>
   <% end %>
 </ul>
 
-
+<%= flash[:notice] %>
 <hr>
 <%= link_to "New Post", new_post_path, :class => "btn btn-xs btn-info" %>
