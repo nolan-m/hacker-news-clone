@@ -1,0 +1,18 @@
+<% content_for(:title, "#{@post.title} | Trimet") %>
+
+<h1> <%= @post.title %></h1>
+
+<p> <%= @post.content %> </p>
+  <ul>
+  <% @post.comments.each do |comment| %>
+    <li><%= comment.content %></li>
+    <% end %>
+  </ul>
+
+<hr>
+<%= link_to "Home", posts_path, :class=> "btn btn-primary" %>
+<%= link_to "Edit Post", edit_post_path, :class=> "btn btn-warning" %>
+<%= link_to "Delete", post_path(@post),
+                      :data => {confirm: "Are You Sure?"},
+                      :method => "delete",
+                      :class => "btn btn-danger" %>

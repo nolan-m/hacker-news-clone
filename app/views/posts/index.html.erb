@@ -1,0 +1,14 @@
+<% content_for(:title, "All Posts | Link Dumpz") %>
+
+<h1>Posts</h1>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li><%= link_to post.title, post.link, :class => "lead" %></li>
+        <ul><li><small><%= link_to "Comments (#{post.comments.length})", post_path(post) %></small></li></ul>
+  <% end %>
+</ul>
+
+
+<hr>
+<%= link_to "New Post", new_post_path, :class => "btn btn-info" %>

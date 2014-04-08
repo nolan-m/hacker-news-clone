@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: link_dumpz_development
+
+test:
+  adapter: postgresql
+  database: link_dumpz_test
