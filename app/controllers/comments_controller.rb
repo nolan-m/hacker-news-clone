@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(user_params)
     if @comment.save
       flash[:notice] = "Comment created."
-      redirect_to post_comments_path(@comment.post)
+      redirect_to :back
     else
       render 'new'
     end
@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
 
 private
   def user_params
-    params.require(:comment).permit(:post_id, :content)
+    params.require(:comment).permit(:commentable_id, :commentable_type, :content)
   end
 
 end

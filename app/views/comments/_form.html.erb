@@ -1,5 +1,6 @@
 <%= form_for [@post, @comment], :html => { :multipart => true } do |form| %>
-  <%= form.hidden_field :post_id, :value => @post.id %>
+  <%= form.hidden_field :commentable_id, :value => @post.id %>
+  <%= form.hidden_field :commentable_type, :value => @post.class %>
    <div class='form-group' id='form-input'>
     <%= form.label :content, "Comment" %></br>
     <%= form.text_area :content, :class => "post-comment" %>

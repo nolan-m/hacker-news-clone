@@ -4,4 +4,5 @@ LinkDumpz::Application.routes.draw do
     resources :comments, except: [:new]
   end
   resources :votes, only: [:create]
+  resources :comments
 end

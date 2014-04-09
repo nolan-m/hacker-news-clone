@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+
+function initialize(){
+  $('#form-show').click(function(){
+    $('#form-hidden').show();
+  });
+};
+
+$(document).ready(initialize);
+$(document).on('page:load', initialize);

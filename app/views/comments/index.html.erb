@@ -1,17 +1,33 @@
-<% content_for(:title, "#{@post.title} | Trimet") %>
+<% content_for(:title, "#{@post.title} | Link Dumpz") %>
 
 <h1> <%= link_to @post.title, @post.link %></h1>
 
 <p> <%= @post.content %> </p>
 <%= render('layouts/errors', object: @comment) %>
   <%= render('form') %>
+
   <%= flash[:notice] %>
   <hr>
   <h4> Comments: </h4>
   <ul>
+
   <% @post.comments.each do |comment| %>
-    <li><%= comment.content %></li>
+    <li><%= comment.content %> | <span id="form-show"><small>comment</small></span></li>
+    <div id="form-hidden">
+      <%= form_for(@comment) do |form| %>
+      <%= form.hidden_field :commentable_id, :value => comment.id %>
+      <%= form.hidden_field :commentable_type, :value => comment.class %>
+      <%= form.text_area :content %>
+      <%= form.submit "comment" %>
+    </div>
+      <ul><% comment.comments.each do |comment| %>
+        <li><%= comment.content %></li>
+      <% end %>
+      </ul>
     <% end %>
+
+
+  <% end %>
   </ul>
 
 <hr>
